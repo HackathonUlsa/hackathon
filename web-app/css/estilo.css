@@ -1,0 +1,123 @@
+.color {
+
+	background-color: #160768;
+	color: #ffffff;
+	border:0;
+	border-top: 0;
+}
+
+.btn-ttc:hover {
+
+	color: #ffffff;
+
+}
+
+.center {
+
+	text-align: center;
+
+}
+
+.izquierda {
+
+	text-align: left;
+
+}
+
+.navbar-default{
+
+	background-color: #faa903;
+	color: #ffffff;
+}
+
+#logo {
+
+	margin-top: 1%;
+	margin-bottom: 1%;
+	width: 200px;
+	height: 40px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.botonesCentrados {
+
+	text-align: center;
+	margin-top: 5%;
+
+}
+
+#combo {
+
+	width: 150px;
+
+}
+
+.alinear {
+
+	text-align: left;
+	margin-top: 5px;
+	margin-left: 7px;
+
+}
+
+.navmargen {
+
+	margin-left: 50px;
+
+}
+
+.especificos {
+
+	background-color: #DFD6D6;
+	height: 225px;
+
+}
+
+.centra{
+
+	text-align:center;
+}
+
+.criterio {
+
+	margin-top: 2%;
+
+}
+
+#color_detCamp
+{
+	
+	background-color:#DFD6D6; 
+	/*top:20%;*/
+	
+
+}
+
+.derecha {
+
+	text-align: right;
+
+}
+
+
+.tituTab
+{
+	background: grey;
+	color: white;
+}
+
+
+
+.foto
+{
+	width: 300px;
+	height :300px;
+	position: relative;
+}
+
+.fotografia {
+	width: 128px;
+	height: 137px;
+}
