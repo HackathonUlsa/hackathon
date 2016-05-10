@@ -12,6 +12,7 @@ class TaxiController {
         def sitio = Sitio.get(params.sitio)
         def taxi = new Taxi(numero: params.numero, numPlaca: params.numPlaca, numPermiso: params.numPermiso,
                 estado: true, capacidadDisponible: 4, chofer: chofer, sitio: sitio)
+        if (params.)
         if (taxi.save() && ! taxi.hasErrors()) {
             flash.message = "Taxi registrado exitosamente."
             redirect(action: 'show', id: taxi.id)

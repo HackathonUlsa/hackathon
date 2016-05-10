@@ -79,9 +79,8 @@
     </div>
 
     <div class="item form-group">
-        <div class="col-md-1 col-sm-1 col-xs-1"></div>
         <div class="col-md-1 col-sm-1 col-xs-1">
-            <input id="boton" class="btn btn-md btn-success" value="Nuevo Servicio">
+            <input id="boton" class="btn btn-success" value="Agregar Servicio">
         </div>
         <div class="col-md-5 col-sm-5 col-xs-5"></div>
     </div>
