@@ -154,6 +154,10 @@ class TaxiController {
         }
     }
 
+    def servicio(){
+
+    }
+
 }
 
 class TaxiDistancia {
