@@ -7,7 +7,7 @@ class UrlMappings {
 			}
 		}
 
-		"/"(controller: 'Sitio', action: 'index')
+		"/"(controller: 'Chofer', action: 'inicio')
 		"500"(view:'/error')
 	}
 }

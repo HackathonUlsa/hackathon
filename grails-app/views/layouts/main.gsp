@@ -31,6 +31,7 @@
 	</g:javascript>
 
 	<g:layoutHead/>
+	<r:layoutResources />
 </head>
 <body class="nav-md">
 
@@ -67,7 +68,16 @@
 					<div class="menu_section">
 						<h3>General</h3>
 						<ul class="nav side-menu">
-
+							<li><a><i class="fa fa-archive"></i> Administrar <span class="fa fa-chevron-down"></span></a>
+								<ul class="nav child_menu" style="display: none">
+									<li><a href="index.html">Choferes</a>
+									</li>
+									<li><a href="index.html">Taxis</a>
+									</li>
+									<li><a href="index.html">Sitios</a>
+									</li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 
@@ -109,6 +119,7 @@
 
 		</div>
 		<g:javascript src="custom.js"></g:javascript>
+		<r:layoutResources />
 
 </body>
 </html>
