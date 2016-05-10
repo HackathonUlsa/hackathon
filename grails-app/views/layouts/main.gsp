@@ -8,7 +8,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title> Dashboard</title>
+	<title>Hey Taxi! | Dashboard</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="${resource(dir: 'images', file: 'LaSalle.png')}" type="image/x-icon">
 	<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
@@ -17,6 +17,9 @@
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'green.css')}" type="text/css">
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'animate.css')}" type="text/css">
+	<link rel="stylesheet" href="${resource(dir: 'css', file: 'pnotify.custom.min.css')}" type="text/css">
+
 	<g:javascript src="jquery-1.11.3.min.js"/>
 	<g:javascript src="jquery-ui.js"></g:javascript>
 	<g:javascript src="bootstrap.min.js"></g:javascript>
@@ -26,6 +29,8 @@
 	<g:javascript src="offcanvas.js"/>
 	<g:javascript src="bootstrap-filestyle.min.js"/>
 	<g:javascript src="application.js"></g:javascript>
+	<g:javascript src="pnotify.custom.min.js"></g:javascript>
+
 	<g:javascript>
 		$('.alert').fadeToggle(5000);
 	</g:javascript>
@@ -68,11 +73,7 @@
 					<div class="menu_section">
 						<h3>General</h3>
 						<ul class="nav side-menu">
-							<li><a><i class="fa fa-archive"></i> Historial <span class="fa fa-chevron-down"></span></a>
-								<ul class="nav child_menu" style="display: none">
-									<li><a href="${createLink(controller: 'historial',action: 'inicio')}">Inicio</a>
-									</li>
-								</ul>
+							<li class="inicio"><a href="${createLink(controller: 'historial', action: 'inicio')}"><i class="fa fa-home"></i> Inicio </a>
 							</li>
 						</ul>
 						<ul class="nav side-menu">
@@ -110,6 +111,8 @@
 								<span class=" fa fa-angle-down"></span>
 							</a>
 							<ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
+								<li><a href="${createLink(controller: 'sitio', action: 'perfil')}"><i class="fa fa-user pull-right"></i>Perfil</a>
+								</li>
 								<li><a href="${createLink(controller: 'logout', action: 'index')}"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a>
 								</li>
 							</ul>
@@ -122,12 +125,69 @@
 		</div>
 		<!--Page content-->
 		<div class="right_col" role="main">
-
+				<g:if test="${flash.message}">
+					<g:hiddenField name="texto" value="${flash.message}" id="successNoti" onclick="showSuccessNotification()"></g:hiddenField>
+				</g:if>
+				<g:if test="${flash.error}">
+					<g:hiddenField name="texto" id="errorNoti" onclick="showNotification(${flash.error})"></g:hiddenField>
+				</g:if>
 			<g:layoutBody/>
 
 		</div>
 		<g:javascript src="custom.js"></g:javascript>
 		<r:layoutResources />
+<script>
+		$(document).ready(function() {
+			$("#successNoti").click();
+		});
 
+		function showSuccessNotification() {
+			var text = $("#successNoti").val();
+			var notice = new PNotify({
+				title : 'Acción Exitosa',
+				text : text + '',
+				animate : {
+					animate : true,
+					in_class : 'slideInDown',
+					out_class : 'slideOutUp'
+				},
+				buttons : {
+					closer : false,
+					sticker : false
+				},
+				type : 'success',
+				icon : 'fa fa-check',
+				delay : 3000
+			})
+
+			notice.get().click(function() {
+				notice.remove();
+			});
+		};
+
+		function showErrorNotification() {
+			var text = $("#errorNoti").val();
+			var notice = new PNotify({
+				title : 'Error :(',
+				text : text + '',
+				animate : {
+					animate : true,
+					in_class : 'slideInDown',
+					out_class : 'slideOutUp'
+				},
+				buttons : {
+					closer : false,
+					sticker : false
+				},
+				type : 'error',
+				icon : 'fa fa-check',
+				duration : 3000
+			})
+
+			notice.get().click(function() {
+				notice.remove();
+			});
+		};
+</script>
 </body>
 </html>

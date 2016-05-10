@@ -1,5 +1,7 @@
 package hackathon
 
+import grails.converters.JSON
+import org.h2.engine.Role
 import org.springframework.security.access.annotation.Secured
 
 @Secured(['ROLE_ADMIN'])
@@ -46,7 +48,7 @@ class ChoferController {
     def agregar(){
 
         def p = new Persona(nombre:params.nombre,apPaterno: params.apellidoPaterno,apMaterno:params.apellidoMaterno,sexo: params.sexo, fechaNacimiento: params.fecha).save(flash:true)
-        def adminRole  = new hackathon.Rol(authority: 'Role_Chofer').save()
+        def adminRole  = Rol.findByAuthority("ROLE_CHOFER")
         def u = new Usuario(username: params.usuario, password: params.password,persona: p, enabled: true).save()
         hackathon.UsuarioRol.create u,adminRole,true
 
@@ -98,5 +100,6 @@ class ChoferController {
 
         [choferes:query]
     }*/
+    
 
 }

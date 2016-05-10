@@ -7,7 +7,7 @@ class UrlMappings {
 			}
 		}
 
-		"/"(controller: 'chofer', action: 'inicio')
+		"/"(controller: 'historial', action: 'inicio')
 		"500"(view:'/error')
 	}
 }

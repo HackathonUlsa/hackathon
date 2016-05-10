@@ -12,6 +12,27 @@ class SitioController {
 
     }
 
+    def perfil(){
+
+    }
+
+    def actualizarPerfil(){
+        println "idd " + params.idd
+
+        def u = Usuario.get(params.idd)
+        u.password = params.password
+
+
+
+        if(u.save(flush: true)){
+            flash.message = "Actualizado Exitosamente"
+        }else{
+            flash.error = "Error al actualizar"
+        }
+
+        redirect(controller: 'sitio', action: 'perfil')
+    }
+
     def save() {
         def sitio = new Sitio(nombre: params.nombre, direccion: params.direccion)
         if (sitio.save() && ! sitio.hasErrors()) {

@@ -42,8 +42,10 @@ class LoginController {
             username == params.email && password == springSecurityService.encodePassword(params.password)
         }
         header 'access-control-allow-origin', '*'
+
         if(usuario){
-            def aux = ["success": true, "usuario": usuario]
+            def rol = hackathon.UsuarioRol.findByUsuario(usuario)
+            def aux = ["success": true, "usuario": usuario, "rol": rol.rol.authority]
             render aux as JSON
         }else{
             render("status": 404)
