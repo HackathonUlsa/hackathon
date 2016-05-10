@@ -84,6 +84,15 @@ class ChoferController {
         render(status: 200)
     }
 
+
+    def pdf(){
+
+
+        String applicationPath = request.getSession().getServletContext().getRealPath("")
+        def resul
+
+    }
+
    /* def _tablaChofer(){
 
         def query = Chofer.getAll()
