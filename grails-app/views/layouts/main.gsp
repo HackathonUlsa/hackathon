@@ -70,11 +70,11 @@
 						<ul class="nav side-menu">
 							<li><a><i class="fa fa-archive"></i> Administrar <span class="fa fa-chevron-down"></span></a>
 								<ul class="nav child_menu" style="display: none">
-									<li><a href="index.html">Choferes</a>
+									<li><a href="${createLink(controller: 'chofer',action: 'inicio')}">Choferes</a>
 									</li>
-									<li><a href="index.html">Taxis</a>
+									<li><a href="${createLink(controller: 'taxi',action: 'obtenerTaxis')}">Taxis</a>
 									</li>
-									<li><a href="index.html">Sitios</a>
+									<li><a href="${createLink(controller: 'sitio',action: 'list')}">Sitios</a>
 									</li>
 								</ul>
 							</li>
