@@ -151,11 +151,12 @@ class TaxiController {
     }
 
     def updateLocation(){
-        def user = Usuario.findById(params.id)
+        def user = Usuario.get(params.id)
         def chofer = Chofer.findByUsuario(user)
         def taxi = Taxi.findByChofer(chofer)
-        taxi.ubicaciones.lat = params.lat
-        taxi.ubicaciones.lng = params.lng
+        def ubicacion = new Ubicacion(lat: params.lat, lng: params.lng)
+        taxi.addToUbicaciones(ubicacion)
+
         header 'access-control-allow-origin', '*'
         if(taxi.save(flush: true)){
             def aux = ["success": true]
