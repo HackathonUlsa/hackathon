@@ -16,4 +16,14 @@ class Chofer {
         numLicencia column: 'numLicencia'
         usuario column: 'usuario'
     }
+
+    def getValoracion() {
+        int sumatoria
+        int valoracion
+        rankings.each { r ->
+            sumatoria += r.calificacion
+        }
+
+        return sumatoria / rankings.size()
+    }
 }

@@ -9,10 +9,14 @@ class SitioController {
     def index() { }
 
     def create() {
+
+    }
+
+    def save() {
         def sitio = new Sitio(nombre: params.nombre, direccion: params.direccion)
         if (sitio.save() && ! sitio.hasErrors()) {
             flash.message = "Sitio creado correctamente"
-            redirect(controller: 'sitio', action: 'sitio', id: sitio.id)
+            redirect(controller: 'sitio', action: 'show', id: sitio.id)
         }
     }
 
@@ -22,13 +26,15 @@ class SitioController {
         sitio.direccion = params.direccion
         if (sitio.save() && ! sitio.hasErrors()) {
             flash.message = "Sitio actualizado correctamente"
-            redirect(controller: 'sitio', action: 'sitio', id: sitio.id)
+            redirect(controller: 'sitio', action: 'show', id: sitio.id)
         }
 
     }
 
     def sitio(Long id) {
         def sitio = Sitio.get(id)
+        if (! sitio)
+            sitio = []
         render sitio as JSON
     }
 
@@ -39,6 +45,8 @@ class SitioController {
 
     def sitios() {
         def sitios = Sitio.getAll()
+        if (! sitios)
+            sitios = []
         render sitios as JSON
     }
 
@@ -46,6 +54,12 @@ class SitioController {
         def sitios = Sitio.getAll()
         [sitios: sitios]
     }
+
+    def edit(Long id) {
+        def sitio = Sitio.get(id)
+        [sitio: sitio]
+    }
+
 
     def historial(Long id) {
         def sitio = Sitio.get(id)
@@ -57,5 +71,15 @@ class SitioController {
         [historial: sitio.historial]
     }
 
+    def _modalEliminar(Long id) {
+        def sitio = Sitio.get(id)
+        [sitio: sitio]
+    }
+
+    def delete(Long id) {
+        def sitio = Sitio.get(id)
+        sitio*.delete()
+        redirect(action: 'list', sitios: Sitio.getAll())
+    }
 
 }

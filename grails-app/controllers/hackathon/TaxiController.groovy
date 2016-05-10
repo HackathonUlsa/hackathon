@@ -7,24 +7,40 @@ class TaxiController {
 
     def index() {}
 
-    def agregarTaxi(){
-        def chofer = Chofer.findById(params.idd)
+    def agregarTaxi() {
+        def chofer = Chofer.findById(params.id)
         new Taxi(numero: params.numero, numPlaca: params.numPlaca, numPermiso: params.numPermiso, estado: params.estado, capacidadDisponible: params.capacidadDisponible, chofer: chofer).save(flush: true)
     }
 
-    def editarTaxi(){
-        def chofer = Chofer.findById(params.idd)
+    def editarTaxi() {
+        def chofer = Chofer.findById(params.id)
         new Taxi(numero: params.numero, numPlaca: params.numPlaca, numPermiso: params.numPermiso, estado: params.estado, capacidadDisponible: params.capacidadDisponible, chofer: chofer).save(flush: true)
     }
 
-    def eliminarTaxi(){
-        def taxi = Taxi.findById(params.idd)
+    def eliminarTaxi() {
+        def taxi = Taxi.findById(params.id)
         taxi.delete()
     }
 
-    def obtenerTaxis(){
+    def obtenerTaxis() {
         def taxis = Taxi.getAll()
         [taxis: taxis]
+    }
+
+    def create() {
+        def choferes = Chofer.getAll()
+        [choferes: choferes]
+
+    }
+
+    def show(Long id) {
+        def taxi = Taxi.get(id)
+        [taxi: taxi]
+    }
+
+    def _modalEliminar(Long id) {
+        def taxi = Taxi.get(id)
+        [taxi: taxi]
     }
 
     def taxi(Long id){
