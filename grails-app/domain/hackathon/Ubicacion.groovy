@@ -2,8 +2,8 @@ package hackathon
 
 class Ubicacion {
 
-    String lat
-    String lng
+    double lat
+    double lng
 
     static constraints = {
     }
