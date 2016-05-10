@@ -63,23 +63,10 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Usuario <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="usuario" class="form-control col-md-7 col-xs-12" name="usuario" placeholder="Usuario@ulsa.com" required="required" type="email">
+                        <input id="usuario" class="form-control col-md-7 col-xs-12" name="usuario" value="${choferes.usuario.username}" required="required" type="email">
                     </div>
                 </div>
 
-                <div class="item form-group">
-                    <label for="password" class="control-label col-md-3">Contraseña <span class="required">*</span></label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="password" type="password" name="password" class="form-control col-md-7 col-xs-12" required="required">
-                    </div>
-                </div>
-
-                <div class="item form-group">
-                    <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Repetir contraseña <span class="required">*</span></label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="password2" type="password" name="password2" data-validate-linked="password" class="form-control col-md-7 col-xs-12" required="required">
-                    </div>
-                </div>
 
                 <div class="ln_solid"></div>
                 <div class="form-group">
