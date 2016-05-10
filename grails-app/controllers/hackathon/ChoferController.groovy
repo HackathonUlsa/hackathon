@@ -50,13 +50,14 @@ class ChoferController {
         def u = new Usuario(username: params.usuario, password: params.password,persona: p, enabled: true).save()
         hackathon.UsuarioRol.create u,adminRole,true
 
-        if(new Chofer(numLicencia:params.licencia,usuario: u).save(flush: true)){
+        Chofer c = new Chofer(numLicencia:params.licencia,usuario: u).save(flush: true)
+        if(c!=null){
             flash.message = "chofer agregado exitosamente"
         }else{
             flash.error = "No se pudo agregar el chofer"
         }
 
-        render(status: 200)
+        redirect(controller: 'chofer',action: 'detalle',id:c.id)
     }
 
 
