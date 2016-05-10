@@ -9,8 +9,9 @@ import net.sf.jasperreports.engine.JasperFillManager
 import net.sf.jasperreports.engine.JasperPrint
 import net.sf.jasperreports.engine.JasperReport
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource
+import org.springframework.security.access.annotation.Secured
 
-
+@Secured(['ROLE_ADMIN'])
 class HistorialController {
 
     def index() {}
