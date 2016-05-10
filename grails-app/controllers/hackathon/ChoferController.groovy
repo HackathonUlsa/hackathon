@@ -11,17 +11,35 @@ class ChoferController {
         [choferes:query]
     }
 
-    def _ModalAgregar(){
+
+
+    def detalle(long id){
+
+
+
+        def query = Chofer.findById(id)
+        [choferes:query]
 
     }
 
-    def _modalEditar(){
+    def editarC(long id){
 
-        def query = Chofer.findById(params.idd)
+
+
+        def query = Chofer.findById(id)
         [choferes:query]
+
     }
 
     def _modalEliminar(){
+
+
+        [nombre:params.nombre2,apP:params.apP,apM:params.apM,idd:params.id2]
+
+    }
+
+    def agregarC(){
+
 
     }
 
@@ -38,9 +56,31 @@ class ChoferController {
             flash.error = "No se pudo agregar el chofer"
         }
 
-        render(controller: 'chofer', action: 'inicio')
+        render(status: 200)
     }
 
+
+    def editar(Long id){
+
+        Chofer c = Chofer.get(id)
+        c.numLicencia= params.licencia
+        c.usuario.persona.nombre=params.nombre
+        c.usuario.username=params.usuario
+        c.usuario.persona.apPaterno=params.apellidoPaterno
+        c.usuario.persona.apMaterno=params.apellidoMaterno
+        c.usuario.persona.fechaNacimiento=params.fecha
+        c.save(flush: true)
+        redirect(controller: 'chofer', action: 'detalle',id:c.id)
+
+    }
+
+
+    def eliminar(){
+
+        Chofer c = Chofer.findById(params.idd)
+        c.delete()
+        render(status: 200)
+    }
 
    /* def _tablaChofer(){
 

@@ -23,7 +23,10 @@
             $("#myModal").modal('toggle');
         }
 
-
+        function dismissModal() {
+            $("#myModal").modal('toggle');
+            location.reload();
+        }
 
 
     </g:javascript>
@@ -36,8 +39,7 @@
 
  <div class="col-md-3">
 
-     <input data-dismiss="modal" class="btn btn-primary" type="submit" name="agregar" value="Agregar Chofer" onclick="${remoteFunction(controller: 'chofer', action: '_ModalAgregar', update: 'modal',
-         onSuccess: 'showModal()')}">
+     <a class="btn btn-primary" href="${createLink(controller:"chofer" , action: "agregarC")}">Agregar Chofer</a>
 
  </div>
 
@@ -59,10 +61,12 @@
                 <td >${c.numLicencia}</td>
                 <td>${c.usuario.persona.nombre} ${c.usuario.persona.apPaterno} ${c.usuario.persona.apMaterno} </td>
                 <td>${c.usuario.persona.sexo}</td>
-                <input type="hidden" value="${c.id}" name="idd">
-                <td><input class="btn btn-success" type="submit" value="Editar" name="editar" id="editar" onclick="${remoteFunction(controller: 'chofer', action: '_modalEditar', update: 'modal2',
-                        onSuccess: 'showModal()')}"> <input class="btn btn-danger" type="submit" value="eliminar" onclick="${remoteFunction(controller: 'chofer', action: '_modalEliminar', update: 'modal3',
+
+
+                <td><a class="btn btn-success" href="${createLink(controller:"chofer" , action: "detalle",id: c.id)}">Detalle</a> <input class="btn btn-danger" type="submit" value="eliminar" onclick="${remoteFunction(controller: 'chofer', action: '_modalEliminar', update: 'modal3', params: [nombre2:c.usuario.persona.nombre,apP:c.usuario.persona.apPaterno,apM:c.usuario.persona.apMaterno,id2:c.id],
                         onSuccess: 'showModal()')}"> </td>
+
+
             </tr>
         </g:each>
         </tbody>
