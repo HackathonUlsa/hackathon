@@ -6,7 +6,7 @@ class Ranking {
 
     Usuario usuario
     String comentario
-    double calificacion
+    int calificacion
 
     static constraints = {
         chofer(nullable: true)

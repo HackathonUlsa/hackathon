@@ -6,7 +6,6 @@ class Cliente {
 
     Usuario usuario
 
-
     static constraints = {
     }
 
