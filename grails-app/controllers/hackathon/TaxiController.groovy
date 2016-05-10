@@ -41,4 +41,18 @@ class TaxiController {
         render taxis as JSON
     }
 
+    def getByNumeroTaxi(String numero){
+        def taxis = Taxi.findByNumero(numero)
+        render taxis as JSON
+    }
+
+    def getByGenero(String genero){
+        def taxis = Taxi.withCriteria {
+            chofer.usuario.persona {
+                eq("sexo", genero)
+            }
+        }
+        render taxis as JSON
+    }
+
 }
