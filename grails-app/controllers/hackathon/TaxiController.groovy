@@ -91,8 +91,10 @@ class TaxiController {
         [taxi: taxi]
     }
 
-    def taxi(Long id){
-        def taxi = Taxi.findById(id)
+    def taxi(){
+        def user = Usuario.findById(params.id)
+        def chofer = Chofer.findByUsuario(user)
+        def taxi = Taxi.findByChofer(chofer)
         header 'access-control-allow-origin', '*'
         render taxi as JSON
     }
@@ -103,31 +105,33 @@ class TaxiController {
         render taxis as JSON
     }
 
-    def getBySitio(String sitio){
-        def taxis = Taxi.findBySitio(sitio)
+    def getBySitio(){
+        def taxis = Taxi.findBySitio(params.sitio)
         header 'access-control-allow-origin', '*'
         render taxis as JSON
     }
 
-    def getByNumeroTaxi(String numero){
-        def taxis = Taxi.findByNumero(numero)
+    def getByNumeroTaxi(){
+        def taxis = Taxi.findByNumero(params.numero)
         header 'access-control-allow-origin', '*'
         render taxis as JSON
     }
 
-    def getByGenero(String genero){
+    def getByGenero(){
         def taxis = Taxi.withCriteria {
             chofer.usuario.persona {
-                eq("sexo", genero)
+                eq("sexo", params.genero)
             }
         }
         header 'access-control-allow-origin', '*'
         render taxis as JSON
     }
 
-    def getByDistancia(double x1, double y1){
+    def getByDistancia(){
         def taxis = Taxi.getAll()
         ArrayList<TaxiDistancia> all = new ArrayList<TaxiDistancia>();
+        double x1 = params.lat
+        double y1 = params.lng
         for(Taxi t: taxis){
             double x2 = t.ubicaciones.lat
             double y2 = t.ubicaciones.lng
@@ -146,10 +150,12 @@ class TaxiController {
         render all as JSON
     }
 
-    def updateLocation(long idd, double lat, double lng){
-        def taxi = Taxi.findById(idd)
-        taxi.ubicaciones.lat = lat
-        taxi.ubicaciones.lng = lng
+    def updateLocation(){
+        def user = Usuario.findById(params.id)
+        def chofer = Chofer.findByUsuario(user)
+        def taxi = Taxi.findByChofer(chofer)
+        taxi.ubicaciones.lat = params.lat
+        taxi.ubicaciones.lng = params.lng
         header 'access-control-allow-origin', '*'
         if(taxi.save(flush: true)){
             def aux = ["success": true]
@@ -160,9 +166,11 @@ class TaxiController {
 
     }
 
-    def isDisponible(long idd, boolean disponible){
-        def taxi = Taxi.findById(idd)
-        taxi.estado = disponible
+    def isDisponible(){
+        def user = Usuario.findById(params.id)
+        def chofer = Chofer.findByUsuario(user)
+        def taxi = Taxi.findByChofer(chofer)
+        taxi.estado = params.disponible
         header 'access-control-allow-origin', '*'
         if(taxi.save(flush: true)){
             def aux = ["success": true]
