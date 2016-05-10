@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-3">
                         <button type="reset" class="btn btn-primary" data-dismiss="modal">NO</button>
-                        <g:submitToRemote url="[controller: 'taxi', action: 'eliminarTaxi', id: taxi.id]" onSuccess="dismissModal()"
+                        <g:submitToRemote url="[controller: 'taxi', action: 'delete', id: taxi.id]" onSuccess="dismissModal()"
                                           class="btn btn-success" value="SI" />
                     </div>
                 </div>

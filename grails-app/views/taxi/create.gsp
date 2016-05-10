@@ -6,6 +6,24 @@
     <meta name='layout' content='main'/>
     <title></title>
     <g:javascript src="validator.js"></g:javascript>
+    <g:javascript>
+        $(document).ready(function(){
+            $("#boton").click(function(){
+                $.ajax({url: "servicio", type: 'GET', success: function(result){
+                    $("#caja").append(result);
+
+                    $('.quitar').click(function(){
+
+                        $(this).parents(".servicio").remove();
+
+                        console.log(this.value);
+
+                    });
+
+                }});
+            });
+        });
+    </g:javascript>
 
 </head>
 
@@ -58,6 +76,19 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <input id="numPermiso" class="form-control col-md-7 col-xs-12"  name="numPermiso" placeholder="Número de Permiso" required="required" type="text">
         </div>
+    </div>
+
+    <div class="item form-group">
+        <div class="col-md-1 col-sm-1 col-xs-1"></div>
+        <div class="col-md-1 col-sm-1 col-xs-1">
+            <input id="boton" class="btn btn-md btn-success" value="Nuevo Servicio">
+        </div>
+        <div class="col-md-5 col-sm-5 col-xs-5"></div>
+    </div>
+
+
+
+    <div id="caja">
     </div>
 
     <div class="ln_solid"></div>

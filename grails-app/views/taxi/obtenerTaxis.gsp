@@ -64,8 +64,8 @@
                 <td>${taxi.numPlaca}</td>
                 <td>${taxi.numPermiso}</td>
                 <td><a class="btn btn-success" href="${createLink(controller:"taxi" , action: "show",id: taxi.id)}">Detalle</a>
-                    <input class="btn btn-danger" type="submit" value="eliminar" onclick="${remoteFunction(controller: 'taxi', action: '_modalEliminar', update: 'modal3', id: sitio.id)},
-                    onSuccess: 'showModal()')}"> </td>
+                    <input class="btn btn-danger" type="submit" value="eliminar" onclick="${remoteFunction(controller: 'taxi', action: '_modalEliminar', update: 'modal3', id: taxi.id, onSuccess: 'showModal()')}">
+                </td>
 
 
             </tr>

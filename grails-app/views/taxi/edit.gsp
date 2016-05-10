@@ -25,7 +25,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <g:select name="sitio" from="${sitios}" class="form-control"
                       optionValue="${{ sitio -> "${sitio.nombre}" }}"
-                      optionKey="id">
+                      optionKey="id" value="${taxi.sitio}">
 
             </g:select>
         </div>
@@ -36,7 +36,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <g:select name="chofer" from="${choferes}" class="form-control"
                       optionValue="${{ chofer -> "${chofer.usuario.persona.nombre}" }}"
-                      optionKey="id">
+                      optionKey="id" value="${taxi.chofer}">
 
             </g:select>
         </div>
@@ -46,7 +46,7 @@
         <label class="control-label col-md-3 col-sm-3 col-xs-12">Número de taxi <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <input id="numero" class="form-control col-md-7 col-xs-12" name="numero" placeholder="Número de taxi" required="required" type="text">
+            <input id="numero" class="form-control col-md-7 col-xs-12" name="numero" placeholder="Número de taxi" required="required" type="text" value="${taxi.numero}">
         </div>
     </div>
 
@@ -54,7 +54,7 @@
         <label class="control-label col-md-3 col-sm-3 col-xs-12">Número de placas <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <input id="numPlaca" class="form-control col-md-7 col-xs-12" name="numPlaca" placeholder="Número Placa" required="required" type="text">
+            <input id="numPlaca" class="form-control col-md-7 col-xs-12" name="numPlaca" placeholder="Número Placa" required="required" type="text" value="${taxi.numPlaca}">
         </div>
     </div>
 
@@ -62,15 +62,15 @@
         <label class="control-label col-md-3 col-sm-3 col-xs-12">Número de Permiso <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <input id="numPermiso" class="form-control col-md-7 col-xs-12"  name="numPermiso" placeholder="Número de Permiso" required="required" type="text">
+            <input id="numPermiso" class="form-control col-md-7 col-xs-12"  name="numPermiso" placeholder="Número de Permiso" required="required" type="text" value="${taxi.numPermiso}">
         </div>
     </div>
 
     <div class="ln_solid"></div>
     <div class="item form-group">
         <div class="col-md-6 col-md-offset-3">
-            <a class="btn btn-primary" href="${createLink(controller:"taxi" , action: "obtenerTaxis")}">Cancelar</a>
-            <input type="submit" class="btn btn-success" formaction="${createLink(controller:"taxi" , action: "agregarTaxi")}" value="Guardar">
+            <a class="btn btn-primary" href="${createLink(controller:"taxi" , action: "taxi", id: taxi.id)}">Cancelar</a>
+            <input type="submit" class="btn btn-success" formaction="${createLink(controller:"taxi" , action: "editarTaxi", id: taxi.id)}" value="Guardar">
         </div>
     </div>
 

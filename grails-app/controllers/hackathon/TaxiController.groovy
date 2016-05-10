@@ -26,14 +26,30 @@ class TaxiController {
         [taxi: taxi, sitios: sitios, choferes: choferes]
     }
 
-    def editarTaxi() {
-        def chofer = Chofer.findById(params.id)
-        new Taxi(numero: params.numero, numPlaca: params.numPlaca, numPermiso: params.numPermiso, estado: params.estado, capacidadDisponible: params.capacidadDisponible, chofer: chofer).save(flush: true)
+    def editarTaxi(Long id) {
+        def taxi = Taxi.get(id)
+        def chofer = Chofer.get(params.chofer)
+        def sitio = Sitio.get(params.chofer)
+
+        taxi.numero = params.numero
+        taxi.numPermiso = params.numPermiso
+        taxi.numPlaca = params.numPlaca
+        taxi.chofer = chofer
+        taxi.sitio = sitio
+
+        if (taxi.save() && ! taxi.hasErrors()) {
+            flash.message = "Taxi actualizado correctamente."
+            redirect(action: 'show', id: taxi.id)
+        }
+
+
+
     }
 
     def eliminarTaxi() {
         def taxi = Taxi.findById(params.id)
         taxi.delete()
+        render(status: 200)
     }
 
     def obtenerTaxis() {
@@ -60,21 +76,25 @@ class TaxiController {
 
     def taxi(Long id){
         def taxi = Taxi.findById(id)
+        header 'access-control-allow-origin', '*'
         render taxi as JSON
     }
 
     def taxis(){
         def taxis = Taxi.getAll()
+        header 'access-control-allow-origin', '*'
         render taxis as JSON
     }
 
     def getBySitio(String sitio){
         def taxis = Taxi.findBySitio(sitio)
+        header 'access-control-allow-origin', '*'
         render taxis as JSON
     }
 
     def getByNumeroTaxi(String numero){
         def taxis = Taxi.findByNumero(numero)
+        header 'access-control-allow-origin', '*'
         render taxis as JSON
     }
 
@@ -84,6 +104,7 @@ class TaxiController {
                 eq("sexo", genero)
             }
         }
+        header 'access-control-allow-origin', '*'
         render taxis as JSON
     }
 
@@ -104,6 +125,7 @@ class TaxiController {
             int compare(a,b) { a.distancia <=> b.distancia }
         }
         all.sort(bySorting)
+        header 'access-control-allow-origin', '*'
         render all as JSON
     }
 
@@ -111,13 +133,30 @@ class TaxiController {
         def taxi = Taxi.findById(idd)
         taxi.ubicaciones.lat = lat
         taxi.ubicaciones.lng = lng
-        taxi.save(flush: true)
+        header 'access-control-allow-origin', '*'
+        if(taxi.save(flush: true)){
+            def aux = ["success": true]
+            render aux as JSON
+        }else{
+            render("status": 404)
+        }
+
     }
 
     def isDisponible(long idd, boolean disponible){
         def taxi = Taxi.findById(idd)
         taxi.estado = disponible
-        taxi.save(flush: true)
+        header 'access-control-allow-origin', '*'
+        if(taxi.save(flush: true)){
+            def aux = ["success": true]
+            render aux as JSON
+        }else{
+            render("status": 404)
+        }
+    }
+
+    def servicio(){
+
     }
 
 }

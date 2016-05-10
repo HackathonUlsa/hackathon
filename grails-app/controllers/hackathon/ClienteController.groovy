@@ -20,25 +20,20 @@ class ClienteController {
 
     def create() {
         def persona = new Persona(nombre: params.nombre, apPaterno: params.apPaterno, apMaterno: params.apMaterno,
-            sexo: params.sexo, fechaNacimiento: params.fechaNacimiento).save()
+            sexo: params.sexo, fechaNacimiento: params.fechaNacimiento).save(flush: true)
         def usuario = new Usuario(username: params.email, password: params.password, enabled: true,
-                persona: persona).save()
+                persona: persona).save(flush: true)
         def rol = Rol.findByAuthority('ROLE_CLIENTE')
         UsuarioRol.create usuario, rol, true
-
+        println usuario
         def cliente = new Cliente(usuario: usuario)
-        def result
-        def stat = 200
+
         header 'access-control-allow-origin', '*'
         if (cliente.save() && ! cliente.hasErrors()) {
-            result = ["success": true]
-            render result as JSON
-        } else {
-            stat = 404
+            def aux = ["success": true]
+            render aux as JSON
+        } else
             render(status: 404)
-        }
-
-
 
     }
 
