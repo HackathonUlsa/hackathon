@@ -47,21 +47,19 @@
                         <h3>${taxi.numPermiso}</h3>
                         <ul class="list-unstyled user_data">
                             <li>
-                                <i class="fa fa-user"></i> Taxi nº ${taxi.numero}
+                                <i class="fa fa-car"></i> Taxi número: ${taxi.numero}
 
                             </li>
                             <li>
                                 <i class="fa fa-user"></i> Placas ${taxi.numPlaca}
 
                             </li>
-                            <g:each in="${taxi.servicios}">
+                            <g:each in="${taxi.servicios}" var="servicio">
                                 <li>
-                                    <i class="fa fa-info"></i> ${taxi}
+                                    <i class="fa fa-info"></i> ${servicio.nombre}
                                 </li>
                             </g:each>
 
-                            <li><i class="fa fa-map-marker user-profile-icon"></i> Oaxaca, Oaxaca, MEX
-                            </li>
                         </ul>
                         <br />
 

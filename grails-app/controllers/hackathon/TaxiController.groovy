@@ -3,6 +3,8 @@ package hackathon
 import grails.converters.JSON
 import org.hibernate.mapping.Map
 
+import java.rmi.server.ServerCloneException
+
 class TaxiController {
 
     def index() {}
@@ -12,7 +14,21 @@ class TaxiController {
         def sitio = Sitio.get(params.sitio)
         def taxi = new Taxi(numero: params.numero, numPlaca: params.numPlaca, numPermiso: params.numPermiso,
                 estado: true, capacidadDisponible: 4, chofer: chofer, sitio: sitio)
-        
+
+        if (params.nombreServicio) {
+            if (params.nombreServicio instanceof String) {
+                def servicio = new Servicio(nombre: params.nombreServicio, descripcion: params.descripcionServicio)
+                taxi.addToServicios(servicio)
+            } else {
+                for (int i = 0; i < params.nombreServicio.size(); i++) {
+                    def servicio = new Servicio(nombre: params.nombreServicio.getAt(i),
+                            descripcion: params.descripcionServicio.getAt(i))
+                    taxi.addToServicios(servicio)
+                }
+            }
+
+        }
+
         if (taxi.save() && ! taxi.hasErrors()) {
             flash.message = "Taxi registrado exitosamente."
             redirect(action: 'show', id: taxi.id)

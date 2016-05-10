@@ -17,6 +17,9 @@
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'green.css')}" type="text/css">
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'animate.css')}" type="text/css">
+	<link rel="stylesheet" href="${resource(dir: 'css', file: 'pnotify.custom.min.css')}" type="text/css">
+
 	<g:javascript src="jquery-1.11.3.min.js"/>
 	<g:javascript src="jquery-ui.js"></g:javascript>
 	<g:javascript src="bootstrap.min.js"></g:javascript>
@@ -26,6 +29,8 @@
 	<g:javascript src="offcanvas.js"/>
 	<g:javascript src="bootstrap-filestyle.min.js"/>
 	<g:javascript src="application.js"></g:javascript>
+	<g:javascript src="pnotify.custom.min.js"></g:javascript>
+
 	<g:javascript>
 		$('.alert').fadeToggle(5000);
 	</g:javascript>
@@ -120,12 +125,69 @@
 		</div>
 		<!--Page content-->
 		<div class="right_col" role="main">
-
+				<g:if test="${flash.message}">
+					<g:hiddenField name="texto" value="${flash.message}" id="successNoti" onclick="showSuccessNotification()"></g:hiddenField>
+				</g:if>
+				<g:if test="${flash.error}">
+					<g:hiddenField name="texto" id="errorNoti" onclick="showNotification(${flash.error})"></g:hiddenField>
+				</g:if>
 			<g:layoutBody/>
 
 		</div>
 		<g:javascript src="custom.js"></g:javascript>
 		<r:layoutResources />
+<script>
+		$(document).ready(function() {
+			$("#successNoti").click();
+		});
 
+		function showSuccessNotification() {
+			var text = $("#successNoti").val();
+			var notice = new PNotify({
+				title : 'Acción Exitosa',
+				text : text + '',
+				animate : {
+					animate : true,
+					in_class : 'slideInDown',
+					out_class : 'slideOutUp'
+				},
+				buttons : {
+					closer : false,
+					sticker : false
+				},
+				type : 'success',
+				icon : 'fa fa-check',
+				delay : 3000
+			})
+
+			notice.get().click(function() {
+				notice.remove();
+			});
+		};
+
+		function showErrorNotification() {
+			var text = $("#errorNoti").val();
+			var notice = new PNotify({
+				title : 'Error :(',
+				text : text + '',
+				animate : {
+					animate : true,
+					in_class : 'slideInDown',
+					out_class : 'slideOutUp'
+				},
+				buttons : {
+					closer : false,
+					sticker : false
+				},
+				type : 'error',
+				icon : 'fa fa-check',
+				duration : 3000
+			})
+
+			notice.get().click(function() {
+				notice.remove();
+			});
+		};
+</script>
 </body>
 </html>
