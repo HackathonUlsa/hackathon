@@ -24,4 +24,9 @@ class Taxi {
         capacidadDisponible column: 'capacidadDisponible'
         sitio column: 'sitio'
     }
+
+    def getNumViajes() {
+        def viajes = Historial.countByChofer(this.chofer)
+        println viajes
+    }
 }

@@ -1,5 +1,6 @@
 package hackathon
 
+import grails.converters.JSON
 import org.h2.engine.Role
 import org.springframework.security.access.annotation.Secured
 
@@ -99,5 +100,6 @@ class ChoferController {
 
         [choferes:query]
     }*/
+    
 
 }
