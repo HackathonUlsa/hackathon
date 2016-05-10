@@ -26,14 +26,29 @@ class TaxiController {
         [taxi: taxi, sitios: sitios, choferes: choferes]
     }
 
-    def editarTaxi() {
-        def chofer = Chofer.findById(params.id)
-        new Taxi(numero: params.numero, numPlaca: params.numPlaca, numPermiso: params.numPermiso, estado: params.estado, capacidadDisponible: params.capacidadDisponible, chofer: chofer).save(flush: true)
+    def editarTaxi(Long id) {
+        def taxi = Taxi.get(id)
+        def chofer = Chofer.get(params.chofer)
+        def sitio = Sitio.get(params.chofer)
+
+        taxi.numero = params.numero
+        taxi.numPermiso = params.numeroPermiso
+        taxi.numPlaca = params.numeroPlaca
+        taxi.chofer = chofer
+        taxi.sitio = sitio
+
+        if (taxi.save() && ! taxi.hasErrors()) {
+            flash.message = "Taxi actualizado correctamente."
+        }
+            redirect(action: 'show', id: taxi.id)
+
+
     }
 
     def eliminarTaxi() {
         def taxi = Taxi.findById(params.id)
         taxi.delete()
+        render(status: 200)
     }
 
     def obtenerTaxis() {
