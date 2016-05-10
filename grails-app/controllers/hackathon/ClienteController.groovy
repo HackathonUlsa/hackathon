@@ -1,7 +1,9 @@
 package hackathon
 
 import grails.converters.JSON
+import org.springframework.security.access.annotation.Secured
 
+@Secured(['permitAll'])
 class ClienteController {
 
     def index() {}
@@ -25,9 +27,7 @@ class ClienteController {
         UsuarioRol.create usuario, rol, true
 
         def cliente = new Cliente(usuario: usuario)
-        if (cliente.save() && ! cliente.hasErrors()) {
-            render cliente as JSON
-        }
+        render(status: 200)
     }
 
 

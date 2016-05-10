@@ -9,12 +9,17 @@ class TaxiController {
 
     def agregarTaxi() {
         def chofer = Chofer.findById(params.chofer)
+        def sitio = Sitio.get(params.sitio)
         def taxi = new Taxi(numero: params.numero, numPlaca: params.numPlaca, numPermiso: params.numPermiso,
-                estado: true, capacidadDisponible: 4, chofer: chofer)
+                estado: true, capacidadDisponible: 4, chofer: chofer, sitio: sitio)
         if (taxi.save() && ! taxi.hasErrors()) {
             flash.message = "Taxi registrado exitosamente."
             redirect(action: 'show', id: taxi.id)
         }
+
+    }
+
+    def edit() {
 
     }
 
@@ -35,7 +40,8 @@ class TaxiController {
 
     def create() {
         def choferes = Chofer.getAll()
-        [choferes: choferes]
+        def sitios = Sitio.getAll()
+        [choferes: choferes, sitios: sitios]
 
     }
 
