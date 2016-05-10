@@ -6,6 +6,7 @@ class Historial {
 
     Chofer chofer
     Cliente cliente
+    double monto
     Date fecha
 
     static constraints = {
