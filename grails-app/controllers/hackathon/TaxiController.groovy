@@ -8,8 +8,14 @@ class TaxiController {
     def index() {}
 
     def agregarTaxi() {
-        def chofer = Chofer.findById(params.id)
-        new Taxi(numero: params.numero, numPlaca: params.numPlaca, numPermiso: params.numPermiso, estado: params.estado, capacidadDisponible: params.capacidadDisponible, chofer: chofer).save(flush: true)
+        def chofer = Chofer.findById(params.chofer)
+        def taxi = new Taxi(numero: params.numero, numPlaca: params.numPlaca, numPermiso: params.numPermiso,
+                estado: true, capacidadDisponible: 4, chofer: chofer)
+        if (taxi.save() && ! taxi.hasErrors()) {
+            flash.message = "Taxi registrado exitosamente."
+            redirect(action: 'show', id: taxi.id)
+        }
+
     }
 
     def editarTaxi() {

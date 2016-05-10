@@ -27,12 +27,12 @@
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Tipo de cultivo: ${terreno.cultivo.nombre}</h2>
+                    <h2>Taxi número ${taxi.numero}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="${createLink(controller: 'terreno', action: 'editar', id: terreno.id)}">Editar</a>
+                                <li><a href="${createLink(controller: 'taxi', action: 'edit', id: taxi.id)}">Editar</a>
                                 </li>
                                 <li><a id="eliminar">Eliminar</a>
                                 </li>
@@ -46,16 +46,8 @@
                     <div class="col-md-9 col-sm-9 col-xs-12">
                         <ul class="stats-overview">
                             <li>
-                                <span class="name"> Temperatura necesaria </span>
-                                <span class="value text-success">${terreno.cultivo.temperaturaNecesaria} <i class="wi wi-celsius"></i></span><span class=""></span>
-                            </li>
-                            <li>
-                                <span class="name"> Humedad Necesaria </span>
-                                <span class="value text-success"><i class="wi wi-humidity"></i> ${terreno.cultivo.humedadNecesaria} </span>
-                            </li>
-                            <li class="hidden-phone">
-                                <span class="name"> Dirección IP </span>
-                                <span class="value text-success"> <i class="fa fa-link"></i> ${terreno.ip} </span>
+                                <span class="name"> Valoración </span>
+                                <span class="value text-success">${taxi.get} <i class="wi wi-celsius"></i></span><span class=""></span>
                             </li>
                         </ul>
                         <br />
