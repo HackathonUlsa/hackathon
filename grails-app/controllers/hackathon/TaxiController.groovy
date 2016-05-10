@@ -19,8 +19,11 @@ class TaxiController {
 
     }
 
-    def edit() {
-
+    def edit(Long id) {
+        def taxi = Taxi.get(id)
+        def sitios = Sitio.getAll()
+        def choferes = Chofer.getAll()
+        [taxi: taxi, sitios: sitios, choferes: choferes]
     }
 
     def editarTaxi() {

@@ -27,7 +27,19 @@ class ClienteController {
         UsuarioRol.create usuario, rol, true
 
         def cliente = new Cliente(usuario: usuario)
-        render(status: 200)
+        def result
+        def stat = 200
+        header 'access-control-allow-origin', '*'
+        if (cliente.save() && ! cliente.hasErrors()) {
+            result = ["success": true]
+            render result as JSON
+        } else {
+            stat = 404
+            render(status: 404)
+        }
+
+
+
     }
 
 
