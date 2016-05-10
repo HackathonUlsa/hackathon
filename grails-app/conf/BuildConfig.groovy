@@ -30,7 +30,8 @@ grails.project.dependency.resolution = {
 
         mavenLocal()
         mavenCentral()
-
+        mavenRepo "http://repo.grails.org/grails/plugins"
+        mavenRepo "http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts"
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
@@ -59,6 +60,8 @@ grails.project.dependency.resolution = {
         runtime ":database-migration:1.3.2"
 
         compile ':cache:1.0.1'
+        compile "org.grails.plugins:jasper:1.11.0"
+        compile ":jasper-response:1.0.1"
         compile ":spring-security-core:1.2.7.3"
     }
 }

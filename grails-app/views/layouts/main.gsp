@@ -68,6 +68,14 @@
 					<div class="menu_section">
 						<h3>General</h3>
 						<ul class="nav side-menu">
+							<li><a><i class="fa fa-archive"></i> Historial <span class="fa fa-chevron-down"></span></a>
+								<ul class="nav child_menu" style="display: none">
+									<li><a href="${createLink(controller: 'historial',action: 'inicio')}">Inicio</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<ul class="nav side-menu">
 							<li><a><i class="fa fa-archive"></i> Administrar <span class="fa fa-chevron-down"></span></a>
 								<ul class="nav child_menu" style="display: none">
 									<li><a href="${createLink(controller: 'chofer',action: 'inicio')}">Choferes</a>
