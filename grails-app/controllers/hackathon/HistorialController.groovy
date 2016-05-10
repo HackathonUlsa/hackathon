@@ -32,6 +32,8 @@ class HistorialController {
         String applicationPath = request.getSession().getServletContext().getRealPath("")
         def resul
         JasperPrint jp1
+        params.logo = applicationPath + "/images/logo.png"
+
         def a = params.list("check").size()
 
         if(a==0){
@@ -42,7 +44,7 @@ class HistorialController {
 
                 def resul2
 
-                resul2 = Historial.executeQuery("select new map( u.username as usuario, p.nombre as chofer ,p.apPaterno as apP,p.apMaterno as apM , h.fecha as fecha , h.monto as monto,s.nombre as sitio) from Sitio s,Cliente c, Chofer ch, Historial h, Usuario u,Persona p,Taxi t where c.id = h.cliente and ch.id=h.chofer and ch.usuario = u.id and u.persona = p.id and ch.id=t.chofer and t.sitio = s.id")
+                resul2 = Historial.executeQuery("select new map( h.id as id, u.username as usuario, p.nombre as chofer ,p.apPaterno as apP,p.apMaterno as apM , h.fecha as fecha , h.monto as monto,s.nombre as sitio) from Sitio s,Cliente c, Chofer ch, Historial h, Usuario u,Persona p,Taxi t where c.id = h.cliente and ch.id=h.chofer and ch.usuario = u.id and u.persona = p.id and ch.id=t.chofer and t.sitio = s.id")
 
 
                 for (int j = 0; j < resul2.size(); j++) {
@@ -86,12 +88,12 @@ class HistorialController {
 
                 if(a==1){
 
-                    resul2 = Historial.executeQuery("select new map( u.username as usuario, p.nombre as chofer ,p.apPaterno as apP,p.apMaterno as apM , h.fecha as fecha , h.monto as monto,s.nombre as sitio) from Sitio s,Cliente c, Chofer ch, Historial h, Usuario u,Persona p,Taxi t where c.id = h.cliente and ch.id=h.chofer and ch.usuario = u.id and u.persona = p.id and ch.id=t.chofer and t.sitio ="+params.check)
+                    resul2 = Historial.executeQuery("select new map(  h.id as id,u.username as usuario, p.nombre as chofer ,p.apPaterno as apP,p.apMaterno as apM , h.fecha as fecha , h.monto as monto,s.nombre as sitio) from Sitio s,Cliente c, Chofer ch, Historial h, Usuario u,Persona p,Taxi t where c.id = h.cliente and ch.id=h.chofer and ch.usuario = u.id and u.persona = p.id and ch.id=t.chofer and t.sitio ="+params.check)
 
 
                 }else{
 
-                    resul2 = Historial.executeQuery("select new map( u.username as usuario, p.nombre as chofer ,p.apPaterno as apP,p.apMaterno as apM , h.fecha as fecha , h.monto as monto,s.nombre as sitio) from Sitio s,Cliente c, Chofer ch, Historial h, Usuario u,Persona p,Taxi t where c.id = h.cliente and ch.id=h.chofer and ch.usuario = u.id and u.persona = p.id and ch.id=t.chofer and t.sitio ="+params.check[i])
+                    resul2 = Historial.executeQuery("select new map(  h.id as id,u.username as usuario, p.nombre as chofer ,p.apPaterno as apP,p.apMaterno as apM , h.fecha as fecha , h.monto as monto,s.nombre as sitio) from Sitio s,Cliente c, Chofer ch, Historial h, Usuario u,Persona p,Taxi t where c.id = h.cliente and ch.id=h.chofer and ch.usuario = u.id and u.persona = p.id and ch.id=t.chofer and t.sitio ="+params.check[i])
 
                 }
                 for (int j = 0; j < resul2.size(); j++) {

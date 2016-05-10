@@ -28,29 +28,63 @@
 		<field name="usuario" class="java.lang.String"/>
 		<field name="chofer" class="java.lang.String"/>
 		<field name="fecha" class="java.lang.String"/>
-		<field name="monto" class="java.lang.String"/>
+		<field name="monto" class="java.lang.Double"/>
+		<field name="sitio" class="java.lang.String"/>
+		<variable name="variable1" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{monto}]]></variableExpression>
+		</variable>
 	</subDataset>
 	<parameter name="tabla" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<field name="sitio" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="167" splitType="Stretch">
 			<staticText>
-				<reportElement x="179" y="23" width="246" height="37" uuid="b8b4abef-5fd2-4662-b55d-08a1b7de8421"/>
+				<reportElement x="148" y="47" width="305" height="92" uuid="bbd8050f-5405-4c12-8e17-0522b758014c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="24" isBold="true"/>
+					<font size="32" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Historial Mensual]]></text>
+				<text><![CDATA[Reporte Mensual]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="280" y="108" width="100" height="31" uuid="e1724fd2-9826-45ce-ac0f-f31dad46c747"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sitio}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement style="table_TD" mode="Opaque" x="16" y="10" width="566" height="1" forecolor="#010101" uuid="7a71527b-6f05-4ef7-9e4f-aeb0e7dfc1ad"/>
+				<graphicElement>
+					<pen lineWidth="6.0"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="18" y="33" width="130" height="86" uuid="4fe3489d-06d3-450f-83b5-b6f50687b886"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="489" y="33" width="130" height="86" uuid="7f16751f-abfa-4a84-a14d-25afa75f9570"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="213" y="108" width="100" height="31" uuid="b00c675b-d230-4280-a050-eae0684f9aaa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sitio:]]></text>
+			</staticText>
+			<line>
+				<reportElement style="table_TD" mode="Opaque" x="10" y="151" width="572" height="1" forecolor="#010101" uuid="c4c770d8-377d-48d6-8db3-ed5c287f4ddd"/>
+				<graphicElement>
+					<pen lineWidth="6.0"/>
+				</graphicElement>
+			</line>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="29" splitType="Stretch"/>
-	</columnHeader>
 	<detail>
 		<band height="161" splitType="Stretch">
 			<componentElement>
@@ -71,9 +105,13 @@
 								<text><![CDATA[ID]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:detailCell style="table_TD" height="49" rowSpan="1">
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_CH" height="49" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="73" height="49" uuid="4c27f918-ad62-47aa-9abc-c3acab188024"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -88,9 +126,13 @@
 								<text><![CDATA[Usuario]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:detailCell style="table_TD" height="49" rowSpan="1">
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_CH" height="49" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="143" height="49" uuid="578b17f1-22fa-4e8a-938c-e46f2f4c8852"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{usuario}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -105,9 +147,13 @@
 								<text><![CDATA[Chofer]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:detailCell style="table_TD" height="49" rowSpan="1">
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_CH" height="49" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="162" height="49" uuid="c27ed84c-f6b8-4b08-9576-ba7523eb91db"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{chofer}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -122,10 +168,21 @@
 								<text><![CDATA[Fecha]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table_TD" height="49" rowSpan="1">
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="101" height="30" forecolor="#FEFEFE" uuid="032dce04-ede5-4ca4-ac97-cd328b8d2bc2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:detailCell style="table_CH" height="49" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="101" height="49" uuid="66fecb83-93f0-4cb9-abba-371a679406f5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -140,10 +197,21 @@
 								<text><![CDATA[Monto]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table_TD" height="49" rowSpan="1">
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#FEFEFE" uuid="80c2f7e2-f010-407e-91ed-b4e157439f9c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{variable1}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:detailCell style="table_CH" height="49" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="49" uuid="dfc2a7db-01b8-4cec-93af-9a539470fbbb"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -152,13 +220,4 @@
 			</componentElement>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
