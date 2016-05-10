@@ -32,15 +32,16 @@ class TaxiController {
         def sitio = Sitio.get(params.chofer)
 
         taxi.numero = params.numero
-        taxi.numPermiso = params.numeroPermiso
-        taxi.numPlaca = params.numeroPlaca
+        taxi.numPermiso = params.numPermiso
+        taxi.numPlaca = params.numPlaca
         taxi.chofer = chofer
         taxi.sitio = sitio
 
         if (taxi.save() && ! taxi.hasErrors()) {
             flash.message = "Taxi actualizado correctamente."
-        }
             redirect(action: 'show', id: taxi.id)
+        }
+
 
 
     }

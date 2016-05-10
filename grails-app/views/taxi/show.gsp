@@ -31,7 +31,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="${createLink(controller: 'usuario', action: 'edit', id: taxi.id)}"><i class="fa fa-edit"></i> Editar</a>
+                                <li><a href="${createLink(controller: 'taxi', action: 'edit', id: taxi.id)}"><i class="fa fa-edit"></i> Editar</a>
                                 </li>
                             </ul>
                         </li>
@@ -47,7 +47,12 @@
                         <h3>${taxi.numPermiso}</h3>
                         <ul class="list-unstyled user_data">
                             <li>
+                                <i class="fa fa-user"></i> Taxi nº ${taxi.numero}
+
+                            </li>
+                            <li>
                                 <i class="fa fa-user"></i> Placas ${taxi.numPlaca}
+
                             </li>
                             <g:each in="${taxi.servicios}">
                                 <li>
