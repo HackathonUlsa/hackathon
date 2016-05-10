@@ -10,6 +10,7 @@
 <head>
     <title></title>
     <meta name="layout" content="main"/>
+
 </head>
 
 <body>
@@ -68,10 +69,7 @@
                     <div class="col-md-9 col-sm-9 col-xs-12">
 
                         <!-- start of user-activity-graph -->
-                        <div id="graph_bar" style="width:100%; height:280px;">
 
-
-                        </div>
                         <!-- end of user-activity-graph -->
                     </div>
                 </div>

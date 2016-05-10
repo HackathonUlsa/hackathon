@@ -184,6 +184,26 @@ class TaxiController {
 
     }
 
+    def rank() {
+        def sitio = Sitio.get(params.id)
+        def taxis = sitio.taxis
+
+        def map = [:]
+        def map2
+        def lista = new LinkedList()
+
+        taxis.each { taxi ->
+            map2 = new HashMap()
+            map2["chofer"] = taxi.chofer.usuario.persona.nombre
+            map2["cantidad"] = Historial.countByChofer(taxi.chofer)
+            //map2["cantidad"] = 5
+            lista.add(map2)
+        }
+        map.put("choferes", lista)
+        render map as JSON
+    }
+
+
 }
 
 class TaxiDistancia {
