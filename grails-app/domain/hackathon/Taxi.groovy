@@ -24,4 +24,6 @@ class Taxi {
         capacidadDisponible column: 'capacidadDisponible'
         sitio column: 'sitio'
     }
+
+
 }

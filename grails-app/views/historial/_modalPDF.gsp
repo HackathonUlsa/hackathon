@@ -23,7 +23,7 @@
 
                                     <div class="" >
 
-                                        <input type="checkbox" class="flat" name="check" value="${g.idds}" >
+                                        <input type="checkbox" class="flat" name="check" value="${g.idd}" >
                                         <!-- <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins> -->
 
                                     </div>

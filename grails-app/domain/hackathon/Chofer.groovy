@@ -26,4 +26,8 @@ class Chofer {
 
         return sumatoria / rankings.size()
     }
+
+    def numViajes() {
+        return
+    }
 }
