@@ -32,19 +32,29 @@ class SitioController {
         render sitio as JSON
     }
 
-    def sitios() {
-        def sitios = Sitio.getAll()
-        render sitios as JSON
-    }
-
     def show(Long id) {
         def sitio = Sitio.get(id)
         [sitio: sitio]
     }
 
+    def sitios() {
+        def sitios = Sitio.getAll()
+        render sitios as JSON
+    }
+
     def list() {
         def sitios = Sitio.getAll()
         [sitios: sitios]
+    }
+
+    def historial(Long id) {
+        def sitio = Sitio.get(id)
+        render sitio.historial as JSON
+    }
+
+    def getHistorial(Long id) {
+        def sitio = Sitio.get(id)
+        [historial: sitio.historial]
     }
 
 
