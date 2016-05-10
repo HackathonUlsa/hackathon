@@ -1,4 +1,5 @@
 import grails.converters.JSON
+import hackathon.Usuario
 
 import javax.servlet.http.HttpServletResponse
 
@@ -32,6 +33,20 @@ class LoginController {
             redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
         } else {
             redirect action: 'auth', params: params
+        }
+    }
+
+    def loguear(){
+
+        def usuario = Usuario.find{
+            username == params.email && password == springSecurityService.encodePassword(params.password)
+        }
+        header 'access-control-allow-origin', '*'
+        if(usuario){
+            def aux = ["success": true, "usuario": usuario]
+            render aux as JSON
+        }else{
+            render("status": 404)
         }
     }
 
